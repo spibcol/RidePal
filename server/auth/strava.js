@@ -18,3 +18,16 @@ passport.use(
     }
   )
 )
+
+router.get(
+  '/',
+  passport.authenticate('strava', {scope: ['profile:read_all', 'read_all']})
+)
+
+router.get(
+  '/callback',
+  passport.authenticate('strava', {
+    successRedirect: '/home',
+    failureRedirect: '/login'
+  })
+)
