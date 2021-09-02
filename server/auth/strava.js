@@ -11,8 +11,12 @@ passport.use(
       clientSecret: process.env.STRAVA_CLIENT_SECRET,
       callbackURL: process.env.STRAVA_CALLBACK
     },
-    function(accessToken, refreshToken, profile, done) {
-      User.findOrCreate({stravaId: profile.id}, function(err, user) {
+    (accessToken, refreshToken, profile, done) => {
+      console.log('LOGGING PROFILE: ', profile, 'color:red')
+      User.findOrCreate({stravaId: profile.id, email: profile.email}, function(
+        err,
+        user
+      ) {
         return done(err, user)
       })
     }
