@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "ridepal",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "An app that communicztes with the Strava API to track wear on the components on your bike",
   "engines": {
     "node": "~12.11.1"
   },
