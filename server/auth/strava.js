@@ -15,12 +15,13 @@ passport.use(
       console.log('LOGGING PROFILE: ', profile, 'color:red')
       User.findOrCreate(
         {
-          where: {stravaId: profile.id},
-          defaults: {
-            stravaId: profile.id,
-            name: profile.fullName
-          }
+          where: {stravaId: profile.id}
         },
+        {
+          stravaId: profile.id,
+          name: profile.fullName
+        },
+
         function(err, user) {
           return done(err, user)
         }
