@@ -9,21 +9,30 @@ passport.use(
     {
       clientID: process.env.STRAVA_CLIENT_ID,
       clientSecret: process.env.STRAVA_CLIENT_SECRET,
-      callbackURL: process.env.STRAVA_CALLBACK
+      callbackURL: '/auth/strava/callback'
     },
     (accessToken, refreshToken, profile, done) => {
       console.log('LOGGING PROFILE: ', profile, 'color:red')
-      User.findOrCreate({stravaId: profile.id, email: profile.email}, function(
-        err,
-        user
-      ) {
-        return done(err, user)
-      })
+      User.findOrCreate(
+        {
+          where: {stravaId: profile.id},
+          defaults: {
+            stravaId: profile.id,
+            name: profile.fullName
+          }
+        },
+        function(err, user) {
+          return done(err, user)
+        }
+      )
     }
   )
 )
 
-router.get('/', passport.authenticate('strava', {scope: 'profile:read_all'}))
+router.get(
+  '/',
+  passport.authenticate('strava', {scope: 'read,profile:read_all'})
+)
 
 router.get(
   '/callback',
