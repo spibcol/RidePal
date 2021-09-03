@@ -12,18 +12,20 @@ passport.use(
       callbackURL: '/auth/strava/callback'
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log('LOGGING PROFILE: ', profile, 'color:red')
-      User.findOrCreate(
-        {
-          where: {
-            stravaId: profile.id,
-            name: profile.fullName
-          }
-        },
-        function(err, user) {
-          return done(err, user)
+      console.log('LOGGING PROFILE: ', profile)
+
+      const stravaId = profile.id
+      const fullName = profile.fullName
+
+      User.findOrCreate({
+        where: {stravaId},
+        defaults: {
+          stravaId,
+          fullName
         }
-      )
+      })
+        .then(([user]) => done(null, user))
+        .catch(done)
     }
   )
 )

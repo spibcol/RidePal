@@ -8,7 +8,7 @@ const User = db.define('user', {
     allowNull: false
   },
   stravaId: {
-    type: Sequelize.STRING
+    type: Sequelize.INTEGER
   }
 })
 
