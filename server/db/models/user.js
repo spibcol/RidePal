@@ -10,9 +10,6 @@ const User = db.define('user', {
   },
   stravaId: {
     type: Sequelize.STRING
-  },
-  bikes: {
-    type: Sequelize.ARRAY
   }
 })
 
