@@ -10,7 +10,7 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({name: 'Spencer Collins', stravaId: '1'}),
-    User.create({email: 'Lance Armstrong', stravaId: '2'})
+    User.create({name: 'Lance Armstrong', stravaId: '2'})
   ])
 
   console.log(`seeded ${users.length} users`)

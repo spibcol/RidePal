@@ -8,7 +8,6 @@ const Bike = require('./bike')
  *    BlogPost.belongsTo(User)
  */
 User.hasMany(Bike)
-Bike.hasOne(User)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
