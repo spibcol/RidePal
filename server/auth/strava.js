@@ -15,13 +15,13 @@ passport.use(
       console.log('LOGGING PROFILE: ', profile)
 
       const stravaId = profile.id
-      const fullName = profile.fullName
+      const name = profile.fullName
 
       User.findOrCreate({
         where: {stravaId},
         defaults: {
           stravaId,
-          fullName
+          name
         }
       })
         .then(([user]) => done(null, user))
