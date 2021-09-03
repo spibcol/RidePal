@@ -1,5 +1,6 @@
 const User = require('./user')
 const Bike = require('./bike')
+const Component = require('./component')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -8,6 +9,7 @@ const Bike = require('./bike')
  *    BlogPost.belongsTo(User)
  */
 User.hasMany(Bike)
+Bike.hasMany(Component)
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
@@ -16,5 +18,6 @@ User.hasMany(Bike)
  */
 module.exports = {
   User,
-  Bike
+  Bike,
+  Component
 }
