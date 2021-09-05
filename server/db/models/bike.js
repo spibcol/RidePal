@@ -6,8 +6,18 @@ const Bike = db.define('bike', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  make: {
+    type: Sequelize.STRING
+  },
+  model: {
+    type: Sequelize.STRING
+  },
   miles: {
     type: Sequelize.FLOAT
+  },
+  userId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 })
 

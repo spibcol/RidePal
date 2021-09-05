@@ -24,7 +24,10 @@ passport.use(
           name
         }
       })
-        .then(([user]) => done(null, user))
+        .then(([user]) => {
+          console.log(user)
+          done(null, user)
+        })
         .catch(done)
     }
   )

@@ -13,7 +13,13 @@ async function seed() {
     User.create({name: 'Lance Armstrong', stravaId: 2})
   ])
 
+  const bikes = await Promise.all([
+    Bike.create({name: 'Trek OCLV', miles: 540, userId: 1}),
+    Bike.create({name: 'Cervelo S5', miles: 2345, userId: 2})
+  ])
+
   console.log(`seeded ${users.length} users`)
+  console.log(`seeded ${bikes.length} bikes`)
   console.log(`seeded successfully`)
 }
 
