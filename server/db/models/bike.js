@@ -18,6 +18,11 @@ const Bike = db.define('bike', {
   userId: {
     type: Sequelize.INTEGER,
     allowNull: false
+  },
+  stravaBikeId: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true
   }
 })
 

@@ -29,6 +29,7 @@ passport.use(
         .then(([user]) => {
           bikes.map(async bike => {
             await Bike.upsert({
+              stravaBikeId: bike.id,
               userId: user.id,
               name: bike.name,
               miles: bike.converted_distance
