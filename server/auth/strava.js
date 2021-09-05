@@ -1,7 +1,7 @@
 const passport = require('passport')
 const router = require('express').Router()
 const StravaStrategy = require('@riderize/passport-strava-oauth2').Strategy
-const {User} = require('../db/models')
+const {User, Bike} = require('../db/models')
 module.exports = router
 
 passport.use(
@@ -12,7 +12,9 @@ passport.use(
       callbackURL: '/auth/strava/callback'
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log('LOGGING PROFILE: ', profile)
+      const bikes = profile._json.bikes
+
+      console.log('LOGGING bikes: ', bikes)
 
       const stravaId = profile.id
       const name = profile.fullName
@@ -25,8 +27,14 @@ passport.use(
         }
       })
         .then(([user]) => {
-          console.log(user)
-          done(null, user)
+          bikes.map(async bike => {
+            await Bike.upsert({
+              userId: user.id,
+              name: bike.name,
+              miles: bike.converted_distance
+            })
+          })
+          return done(null, user)
         })
         .catch(done)
     }
