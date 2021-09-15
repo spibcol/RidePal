@@ -8,6 +8,10 @@ const Component = db.define('component', {
   },
   compMiles: {
     type: Sequelize.FLOAT
+  },
+  bikeId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
   }
 })
 
